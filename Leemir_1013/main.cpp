@@ -4,31 +4,71 @@
 #include "Player.h"
 #include "Goal.h"
 #include "Floor.h"
+#include <vector>
+#include <fstream>
+
 
 using namespace std;
 
 int main()
 {
-	AWall* MyWall = new AWall();
-	AFloor* MyFloor = new AFloor();
-	APlayer* MyPlayer = new APlayer();
-	AGoal* MyGoal = new AGoal();
+	vector<AWall*> MyWalls;
+	vector<APlayer*> MyPlayer;
+	vector<AFloor*> MyFloor;
+	vector<AGoal*> MyGoal;
 
-	MyPlayer->X = 10;
-	MyPlayer->Y = 10;
+	char Data[100];
+	ifstream MapFile("Level1.txt");
+	
+	int Y = 0;
 
+	while (MapFile.getline(Data, 100))
+	{
+		for (int X = 0; X < strlen(Data); X++)
+		{
+			if (Data[X] == '*')
+			{
+				MyWalls.push_back(new AWall(X,Y));
+			}
+			else if (Data[X] == 'P')
+			{
+				MyPlayer.push_back(new APlayer(X, Y));
+			}
+			else if (Data[X] == ' ')
+			{
+				MyFloor.push_back(new AFloor(X, Y));
+			}
+			else if (Data[X] == 'G')
+			{
+				MyGoal.push_back(new AGoal(X, Y));
+			}
 
-	MyWall->Draw();
-	MyFloor->Draw();
-	MyPlayer->Draw();
-	MyGoal->Draw();
+			
+		}
 
+		Y++;
+	}
 
-	delete MyWall;
-	delete MyFloor;
-	delete MyPlayer;
-	delete MyGoal;
+	for (auto Value : MyPlayer)
+	{
+		Value->Draw();
+	}
 
+	for (auto Value : MyGoal)
+	{
+		Value->Draw();
+	}
+	for (auto Value : MyFloor)
+	{
+		Value->Draw();
+	}
 
+	for (auto Value : MyWalls)
+	{
+		Value->Draw();
+	}
+
+	MapFile.close();
+	
 	return 0;
 }

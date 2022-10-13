@@ -5,6 +5,7 @@ class APlayer :public AActor
 {
 public:
 	APlayer();
+	APlayer(int NewX, int NewY);
 	~APlayer();
 	
 };

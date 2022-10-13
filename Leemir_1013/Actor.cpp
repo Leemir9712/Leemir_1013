@@ -13,6 +13,13 @@ AActor::AActor() :
 
 }
 
+AActor::AActor(int NewX, int NewY)
+	:AActor()
+{
+	X = NewX;
+	Y = NewY;
+}
+
 AActor::~AActor()
 {
 }

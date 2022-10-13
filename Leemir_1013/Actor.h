@@ -4,6 +4,7 @@ class AActor
 {
 public:
 	AActor();
+	AActor(int NewX, int NewY);
 	~AActor();
 
 	int X;
