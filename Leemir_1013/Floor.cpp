@@ -1,9 +1,13 @@
 #include "Floor.h"
 
-FFloor::FFloor()
+AFloor::AFloor()
+{
+	Shape = ' ';
+
+}
+
+AFloor::~AFloor()
 {
 }
 
-FFloor::~FFloor()
-{
-}
+
